@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Notificator
 // @namespace    https://github.com/VBelozyorov/phab-notificator
-// @version      0.9.5
+// @version      0.9.6
 // @description  Poll Phabricator notifications endpoint and shows unread notifications on desktop
 // @author       Vladimir Belozyorov
 // @match        https://phab.shire.local/*
@@ -130,10 +130,12 @@
 
                 //console.debug(elements);
                 let now = Date.now();
+                let actualTasks = [];
                 elements.forEach((elem) => {
                     if (elem.matches('.phabricator-notification-unread')) {
 
                         let task = elem.childNodes[2].getAttribute('href').replace('/', '');
+                        actualTasks.push(task);
                         let meta = elem.dataset.meta;
                         let show = true;
                         if (task in shown) {
@@ -156,6 +158,13 @@
                         }
                     }
                 });
+
+                for (let task in shown) {
+                    if (actualTasks.indexOf(task) === -1) {
+                        delete shown[task];
+                    }
+                }
+
                 localStorage['notificator-shown'] = JSON.stringify(shown);
                 return unread.reverse();
             })
