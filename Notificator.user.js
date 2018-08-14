@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Notificator
-// @namespace    https://www.phacility.com/phabricator/
-// @version      0.9.4
+// @namespace    https://github.com/VBelozyorov/phab-notificator/
+// @version      0.9.5
 // @description  Poll Phabricator notifications endpoint and shows unread notifications on desktop
 // @author       Vladimir Belozyorov
 // @match        https://phab.shire.local/*
