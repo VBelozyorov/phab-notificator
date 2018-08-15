@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Notificator
-// @namespace    https://github.com/VBelozyorov/phab-notificator
+// @namespace    https://bitbucket.org/vbelozyorov/phab-notificator
 // @version      0.9.7.%BUILD_TIME%
 // @description  Polls Phabricator notifications endpoint and shows unread notifications on desktop
 // @author       Vladimir Belozyorov
