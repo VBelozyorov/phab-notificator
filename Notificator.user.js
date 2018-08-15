@@ -2,7 +2,7 @@
 // @name         Notificator
 // @namespace    https://github.com/VBelozyorov/phab-notificator
 // @version      0.9.6
-// @description  Poll Phabricator notifications endpoint and shows unread notifications on desktop
+// @description  Polls Phabricator notifications endpoint and shows unread notifications on desktop
 // @author       Vladimir Belozyorov
 // @match        https://phab.shire.local/*
 // @grant        none
@@ -19,7 +19,8 @@
         return;
     }
 
-    let heartbeatDelay = 5000;
+    let heartbeatDelay = 1000 * 5;
+    let mainDelay = 1000 * 15;
     let taskRenotifyDelay = 1000 * 60 * 30;
     let timestart = Date.now();
     let pause = 0;
@@ -139,7 +140,6 @@
                         let meta = elem.dataset.meta;
                         let show = true;
                         if (task in shown) {
-                            //shown[task].notifications = new Set(shown[task].notifications);
                             if (meta in shown[task].notifications) {
                                 show = false;
                             }
@@ -188,7 +188,7 @@
                 //main();
                 heartbeat();
                 let hbInterval = setInterval(heartbeat, heartbeatDelay);
-                let mainInterval = setInterval(main, 15000);
+                let mainInterval = setInterval(main, mainDelay);
             } else {
                 console.debug("Notifications permission is " + permission + ". " + GM_info.script.name + " can't work without permission to Notifications.");
             }
