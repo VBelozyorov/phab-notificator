@@ -1,0 +1,14 @@
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: alpine:latetst
+
+pipelines:
+    branches:
+        master:
+            - step:
+                script:
+                    - mkdir build
+                    - cp Notificator.user.js build/Notificator.user.js
+                    - BUILD_TIME=`date +%Y%M%d%H%m`
+                    - sed -i -- "s/%BUILD_TIME%/$BUILD_TIME/g" build/Notificator.user.js
+                    - curl -X POST "https://${BB_AUTH_STRING}@api.bitbucket.org/2.0/repositories/vbelozyorov/phab-notificator/downloads" --form files=@"build/Notificator.user.js"
+                    - rm -r build
