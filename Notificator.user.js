@@ -92,7 +92,7 @@
 
     function main() {
         if (pause > 0) {
-            console.info(GM_info.script.name + " in this tab paused while " + pause + " other tab(s) running");
+            console.info(GM_info.script.name + " in this tab paused while other tab(s) running");
             return;
         }
 
