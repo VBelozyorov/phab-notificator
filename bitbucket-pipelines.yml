@@ -1,5 +1,5 @@
 # You can specify a custom docker image from Docker Hub as your build environment.
-image: alpine:latetst
+image: alpine:latest
 
 pipelines:
     branches:
